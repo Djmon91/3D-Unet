@@ -56,15 +56,17 @@ def main():
                         os.path.join(args.base, args.training_list),
                         config.patch['patchside'],
                         config.unet['number_of_label'])
+
     train_iter = chainer.iterators.SerialIterator(train, batch_size=config.batchsize)
 
     val = UnetDataset(args.root,
                         os.path.join(args.base, args.validation_list),
                         config.patch['patchside'],
-                        config.unet['number_of_label'])
+                        config.unet['number_of_label'], 
+                        validation=100)
     val_iter = chainer.iterators.SerialIterator(val, batch_size=config.batchsize, repeat=False, shuffle=False)
 
-    # Set up a neural network to train
+        # Set up a neural network to train
     print ('Set up a neural network to train')
     unet = UNet3D(config.unet['number_of_label'])
     if args.model:

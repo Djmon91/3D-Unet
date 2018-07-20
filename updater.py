@@ -48,7 +48,7 @@ class Unet3DUpdater(chainer.training.StandardUpdater):
         label, data = self.converter(batch, self.device)
 
         unet = self.unet
-
         predict = unet(data)
+
 
         unet_optimizer.update(self.loss_softmax_cross_entropy, unet, predict, label)
