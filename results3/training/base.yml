@@ -7,7 +7,7 @@ snapshot_interval: 500
 evaluation_interval: 125
 
 patch:
-  patchside: 80
+  patchside: 64
 
 unet:
   fn: model.py

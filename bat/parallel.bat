@@ -1,0 +1,1 @@
+D:\julien\project\3D-Unet\bat\parallel_cui  D:\julien\project\3D-Unet\bat\predict

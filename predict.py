@@ -102,7 +102,7 @@ def main():
         imagePrediction = sitk.GetImageFromArray(prediction_map)
         imagePrediction.SetSpacing(sitkOrg.GetSpacing())
         imagePrediction.SetOrigin(sitkOrg.GetOrigin())
-        result_dir = os.path.join(args.base, args.out, os.path.dirname(i[0]))
+        result_dir = os.path.join(args.out, os.path.dirname(i[0]))
         if not os.path.exists(result_dir):
             os.makedirs(result_dir)
         fn = os.path.splitext(os.path.basename(i[0]))[0]
@@ -110,7 +110,7 @@ def main():
 
         # Save probability map
         for ch in range(probability_map.shape[0]):
-            imageProbability = sitk.GetImageFromArray(probability_map)
+            imageProbability = sitk.GetImageFromArray(probability_map[ch, :])
             imageProbability.SetSpacing(sitkOrg.GetSpacing())
             imageProbability.SetOrigin(sitkOrg.GetOrigin())
             sitk.WriteImage(imageProbability, '{}/{}_probability_{}.mhd'.format(result_dir, fn, ch))
